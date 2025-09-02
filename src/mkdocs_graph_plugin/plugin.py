@@ -64,7 +64,13 @@ class GraphPlugin(BasePlugin):
 
     def on_post_page(self, output: str, *, page, config) -> str:
         """Inject the graph options script into the HTML page."""
+        import pdb
+        # pdb.set_trace()
         site_url = config.get("site_url", "/")
+
+        # TODO: Write catch if site_url is None
+        # TODO: Write trigger if using mkdocs serve
+
         options_script = (
             "<script>"
             f"window.graph_options = {{"
