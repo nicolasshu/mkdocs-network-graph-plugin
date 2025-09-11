@@ -15,7 +15,7 @@ log = get_plugin_logger(__name__)
 class Graph:
     """Represents the connection graph between files."""
 
-    LINK_PATTERN = r"\[[^\]]+\]\((?P<url>[^)]+)\)|\[\[(?P<wikilink>[^\]]+)\]\]"
+    LINK_PATTERN = r"\[[^\]]+\]\((?P<url>.*?)\)|\[\[(?P<wikilink>[^\]]+)\]\]"
 
     def __init__(self, config):
         """Initializes the graph data structure."""
@@ -55,11 +55,23 @@ class Graph:
         log.debug(f"Using 'file_name' for node name for page '{page.title}'")
         return page.file.name
 
+    def _unescape_url(self, url: str) -> str:
+        """Unescape a URL."""
+        # Strip angle brackets if present (for links like [text](<url>))
+        if url.startswith("<") and url.endswith(">"):
+            url = url[1:-1]
+        return unquote(url)
+
     def _normalize_link(self, match: re.Match) -> Optional[str]:
         """Normalize the URL from a regex match."""
         url = match.group("url") or match.group("wikilink")
         if not url:
             return None
+
+        # For wikilinks, add the .md extension
+        if match.group("wikilink") and not url.endswith(".md"):
+            url += ".md"
+        url = self._unescape_url(url)
 
         # For wikilinks, add the .md extension
         if match.group("wikilink") and not url.endswith(".md"):
@@ -73,9 +85,7 @@ class Graph:
             if not url:
                 continue
 
-            target_path = os.path.normpath(
-                os.path.join(os.path.dirname(node_id), unquote(url))
-            )
+            target_path = os.path.normpath(os.path.join(os.path.dirname(node_id), url))
 
             # Check if the target is a node in the graph
             if any(node["id"] == target_path for node in self.nodes):
