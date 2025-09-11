@@ -12,11 +12,7 @@
 
 *A powerful [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) plugin that generates beautiful, interactive graph visualizations of your documentation structure and relationships.*
 
-<p align="center">
-  <a href="https://develmusa.github.io/mkdocs-network-graph-plugin/">
-    <video src="https://raw.githubusercontent.com/develmusa/mkdocs-network-graph-plugin/main/docs/assets/demo.webm" autoplay loop muted playsinline width="100%"></video>
-  </a>
-</p>
+![demo](https://raw.githubusercontent.com/develmusa/mkdocs-network-graph-plugin/main/docs/assets/demo.gif)
 
 [**Documentation**](https://develmusa.github.io/mkdocs-network-graph-plugin/) • [**Quick Start**](#quick-start) • [**Configuration**](#configuration) • [**Contributing**](#contributing)
 
