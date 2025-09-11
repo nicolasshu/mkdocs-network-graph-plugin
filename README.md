@@ -12,6 +12,12 @@
 
 *A powerful [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) plugin that generates beautiful, interactive graph visualizations of your documentation structure and relationships.*
 
+<p align="center">
+  <a href="https://develmusa.github.io/mkdocs-network-graph-plugin/">
+    <video src="https://raw.githubusercontent.com/develmusa/mkdocs-network-graph-plugin/main/docs/assets/demo.webm" autoplay loop muted playsinline width="100%"></video>
+  </a>
+</p>
+
 [**Documentation**](https://develmusa.github.io/mkdocs-network-graph-plugin/) • [**Quick Start**](#quick-start) • [**Configuration**](#configuration) • [**Contributing**](#contributing)
 
 </div>
@@ -21,7 +27,6 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Why Use a Graph?](#why-use-a-graph)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -37,27 +42,9 @@
 
 | **Interactive Visualization** | **Smart Navigation** | **Fully Customizable** | **Lightweight** |
 |:---:|:---:|:---:|:---:|
-| Beautiful, interactive graphs powered by D3.js | Full-site and local graph views | CSS variables for easy theming | Minimal dependencies, maximum performance |
+| **Interactive Graph Visualization** of your documentation structure | **Dual View Modes** to switch between a full-site overview and local page connections | **Theme Integration** that seamlessly blends with Material for MkDocs | **Performance Optimized** with minimal impact on build times and a responsive design |
 
 </div>
-
-### Key Capabilities
-
-- **Interactive Graph Visualization** - Creates stunning, interactive graphs of your documentation structure
-- **Dual View Modes** - Switch between full-site overview and local page connections
-- **Theme Integration** - Seamlessly integrates with Material for MkDocs themes
-- **Performance Optimized** - Lightweight with minimal impact on build times
-- **Highly Configurable** - Extensive customization options via CSS variables
-- **Responsive Design** - Works beautifully on desktop and mobile devices
-
-## Why Use a Graph?
-
-Traditional documentation follows a linear, hierarchical structure that can make it difficult to discover relationships between topics. A graph visualization transforms your docs into an interconnected knowledge network, offering:
-
-- **Enhanced Discoverability** - Visualize connections between related content you might otherwise miss
-- **Better Understanding** - See the "big picture" of your documentation architecture
-- **Intuitive Navigation** - Jump between related topics with visual, contextual navigation
-- **Content Insights** - Identify documentation gaps and over-connected areas
 
 ## Quick Start
 
