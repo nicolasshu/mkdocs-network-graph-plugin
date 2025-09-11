@@ -3,7 +3,7 @@
 import os
 import re
 from typing import Iterator, Optional
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 from mkdocs.plugins import get_plugin_logger
 from mkdocs.structure.files import Files
@@ -73,9 +73,9 @@ class Graph:
             url += ".md"
         url = self._unescape_url(url)
 
-        # For wikilinks, add the .md extension
-        if match.group("wikilink") and not url.endswith(".md"):
-            url += ".md"
+        # Remove query and fragment from the URL
+        url = urlsplit(url).path
+
         return url
 
     def _find_links(self, markdown: str, node_id: str, files: Files) -> Iterator[dict]:

@@ -276,3 +276,61 @@ def test_graph_build_with_spaces_in_link_and_path(mocker):
             "source": "linking_page.md",
             "target": "folder with spaces/page with spaces.md",
         } in graph.edges
+
+
+def test_graph_build_with_url_hash(mocker):
+    """Test that the graph is built correctly with a URL hash."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = Path(tmpdir)
+        (tmpdir / "index.md").write_text("This is the index.")
+        (tmpdir / "page1.md").write_text("This is page 1. [link](page2.md#some-hash)")
+        (tmpdir / "page2.md").write_text("This is page 2.")
+
+        files_list = [
+            File("index.md", str(tmpdir), str(tmpdir / "site"), False),
+            File("page1.md", str(tmpdir), str(tmpdir / "site"), False),
+            File("page2.md", str(tmpdir), str(tmpdir / "site"), False),
+        ]
+
+        config = mocker.Mock()
+        config.get.return_value = "http://example.com"
+
+        for file in files_list:
+            file.page = Page(None, file, config)
+
+        files = Files(files_list)
+        plugin_config = {"name": "title"}
+        graph = Graph(plugin_config)(files)
+
+        assert len(graph.edges) == 1
+        assert {"source": "page1.md", "target": "page2.md"} in graph.edges
+
+
+def test_graph_build_with_url_query_and_hash(mocker):
+    """Test that the graph is built correctly with a URL query and hash."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = Path(tmpdir)
+        (tmpdir / "index.md").write_text("This is the index.")
+        (tmpdir / "page1.md").write_text(
+            "This is page 1. [link](<page2.md?h=#jahresverarbeitungen>)"
+        )
+        (tmpdir / "page2.md").write_text("This is page 2.")
+
+        files_list = [
+            File("index.md", str(tmpdir), str(tmpdir / "site"), False),
+            File("page1.md", str(tmpdir), str(tmpdir / "site"), False),
+            File("page2.md", str(tmpdir), str(tmpdir / "site"), False),
+        ]
+
+        config = mocker.Mock()
+        config.get.return_value = "http://example.com"
+
+        for file in files_list:
+            file.page = Page(None, file, config)
+
+        files = Files(files_list)
+        plugin_config = {"name": "title"}
+        graph = Graph(plugin_config)(files)
+
+        assert len(graph.edges) == 1
+        assert {"source": "page1.md", "target": "page2.md"} in graph.edges
