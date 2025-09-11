@@ -297,8 +297,8 @@ document$.subscribe(function() {
                 fullGraphData = graph;
             }
 
-            const siteUrl = new URL(window.graph_options?.site_url || '/');
-            const currentPath = window.location.pathname.replace(siteUrl.pathname, '').replace(/\/$/, "");
+            const basePath = window.graph_options?.base_path || '/';
+            const currentPath = window.location.pathname.replace(basePath, '').replace(/\/$/, "");
             const startNode = fullGraphData.nodes.find(n => {
                 const nodeUrl = n.url.replace(/\/$/, "");
                 if (currentPath === "") {
@@ -378,7 +378,7 @@ document$.subscribe(function() {
                 .attr("class", "main-circle")
                 .attr("r", d => d.id === startNode?.id ? NODE_CONFIG.CIRCLE_RADIUS * NODE_CONFIG.CURRENT_NODE_MULTIPLIER : NODE_CONFIG.CIRCLE_RADIUS)
                 .on("click", function(event, d) {
-                    window.location.href = new URL(d.url, siteUrl.href).href;
+                    window.location.href = new URL(d.url, window.location.origin + basePath).href;
                 });
 
             node.append("text")
@@ -445,8 +445,8 @@ document$.subscribe(function() {
         if (fullGraphData) {
             draw(fullGraphData);
         } else {
-            const site_url = window.graph_options?.site_url || '/';
-            const graphUrl = new URL('graph/graph.json', site_url);
+            const base_path = window.graph_options?.base_path || '/';
+            const graphUrl = new URL(base_path + 'graph/graph.json', window.location.origin);
             if (graphOptions.debug) console.log(`Fetching graph data from ${graphUrl}`);
             d3.json(graphUrl).then(draw);
         }

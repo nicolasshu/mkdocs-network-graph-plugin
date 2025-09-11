@@ -3,6 +3,7 @@
 import json
 import os
 import shutil
+from urllib.parse import urlparse
 
 from mkdocs.config.config_options import Choice, Type
 from mkdocs.config.defaults import MkDocsConfig
@@ -64,12 +65,20 @@ class GraphPlugin(BasePlugin):
 
     def on_post_page(self, output: str, *, page, config) -> str:
         """Inject the graph options script into the HTML page."""
-        site_url = config.get("site_url", "/")
+        site_url = config.get("site_url")
+        if site_url:
+            base_path = urlparse(site_url).path
+            # Ensure base_path ends with a slash
+            if not base_path.endswith("/"):
+                base_path += "/"
+        else:
+            base_path = "/"
+
         options_script = (
             "<script>"
             f"window.graph_options = {{"
             f"    debug: {str(self.config['debug']).lower()},"
-            f"    site_url: '{site_url}'"
+            f"    base_path: '{base_path}'"
             f"}};"
             "</script>"
         )
