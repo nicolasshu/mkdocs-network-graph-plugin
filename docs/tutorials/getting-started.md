@@ -28,5 +28,5 @@ That's it! A graph of your documentation will now be available in your site. By 
 
 Now that you have the plugin up and running, you might want to:
 
-- [Configure the plugin](configuration.md) to change its behavior.
-- [Customize the graph's appearance](customization.md) to match your theme.
+- [Configure the plugin](../reference/configuration.md) to change its behavior.
+- [Customize the graph's appearance](../how-to/customization.md) to match your theme.

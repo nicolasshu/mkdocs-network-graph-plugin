@@ -10,4 +10,4 @@ A graph visualization, on the other hand, allows you to see your documentation a
 
 ## Next Steps
 
-Now that you understand the benefits of using a graph, get started with the plugin by following our [Getting Started](tutorials/getting-started.md) guide.
+Now that you understand the benefits of using a graph, get started with the plugin by following our [Getting Started](../tutorials/getting-started.md) guide.
