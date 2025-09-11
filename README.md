@@ -106,13 +106,29 @@ pipx install mkdocs-network-graph-plugin
 
 ### Development Installation
 
-For contributors and developers:
+For contributors, this is the recommended setup:
 
-```bash
-git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
-cd mkdocs-network-graph-plugin
-uv pip install -e '.[dev]'
-```
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
+    cd mkdocs-network-graph-plugin
+    ```
+
+2. **Set up the development environment**
+
+    ```bash
+    # Sync with the lockfile
+    uv sync
+    # Install required Python versions for testing
+    uv python install 3.10 3.11 3.12 3.13
+    # Install in editable mode with dev dependencies
+    uv pip install -e '.[dev]'
+    # Install pre-commit hooks
+    uv run pre-commit install
+    ```
+
+For more details, see the [developer guide](https://develmusa.github.io/mkdocs-network-graph-plugin/how-to/for-developers/).
 
 ### Requirements
 
@@ -191,35 +207,17 @@ Comprehensive documentation is available at **[develmusa.github.io/mkdocs-networ
 
 ## Contributing
 
-We welcome contributions! Here's how to get started:
+We welcome contributions! For a complete guide on how to contribute, please see the [developer guide](https://develmusa.github.io/mkdocs-network-graph-plugin/how-to/for-developers/).
 
-### Development Setup
+To get started, set up your environment by following the [Development Installation](#development-installation) instructions. From there, you can run tests and linting using `nox`:
 
-1. **Clone the repository**
+```bash
+# Run tests
+uv run nox -s tests
 
-   ```bash
-   git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
-   cd mkdocs-network-graph-plugin
-   ```
-
-2. **Install development dependencies**
-
-   ```bash
-   uv pip install -e '.[dev]'
-   ```
-
-3. **Run tests**
-
-   ```bash
-   uv run pytest
-   ```
-
-4. **Check code style**
-
-   ```bash
-   uv run ruff check .
-   uv run ruff format .
-   ```
+# Run linting
+uv run nox -s lint
+```
 
 ### Contribution Guidelines
 
@@ -227,19 +225,6 @@ We welcome contributions! Here's how to get started:
 - **Feature Requests**: Open an issue with your proposal
 - **Pull Requests**: Fork, create a feature branch, and submit a PR
 - **Documentation**: Help improve our docs
-
-### Testing
-
-```bash
-# Run all tests
-uv run pytest
-
-# Run with coverage
-uv run pytest --cov=mkdocs_graph_plugin
-
-# Run specific test file
-uv run pytest tests/test_plugin.py
-```
 
 ## License
 
