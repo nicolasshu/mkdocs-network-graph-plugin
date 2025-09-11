@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-09-11
+
 ### Fixed
 
 - Resolved a CORS error that prevented the graph from rendering in certain development environments by using relative paths for fetching graph data.
