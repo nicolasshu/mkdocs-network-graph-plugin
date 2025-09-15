@@ -2,6 +2,8 @@
 
 A [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) plugin to generate an interactive graph visualization of your documentation.
 
+![demo](assets/demo.gif)
+
 <div class="grid cards" markdown>
 
 - :material-graph: **Interactive Graph Visualization**

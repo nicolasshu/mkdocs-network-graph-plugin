@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-09-11
+
+### Fixed
+
+- Resolved a CORS error that prevented the graph from rendering in certain development environments by using relative paths for fetching graph data.
+
+## [1.0.2] - 2025-09-11
+
+### Fixed
+
+- Handled links with URL fragments and query parameters gracefully.
+
+## [1.0.1] - 2025-09-11
+
+### Added
+
+- Enhanced developer documentation and added a contribution guide.
+- Added a demo video to the documentation and updated linting rules.
+
+### Fixed
+
+- Improved handling of links with spaces in angle brackets in the graph.
+- Modernized the documentation deployment workflow and fixed broken links.
+
+### Changed
+
+- Replaced the demo video with a more lightweight animated GIF.
+- Updated the project logo with a new network-graph-themed design.
+
+## [1.0.0] - 2025-08-21
+
 ### Added
 
 - Interactive graph visualization for MkDocs documentation

@@ -12,6 +12,8 @@
 
 *A powerful [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) plugin that generates beautiful, interactive graph visualizations of your documentation structure and relationships.*
 
+![demo](https://raw.githubusercontent.com/develmusa/mkdocs-network-graph-plugin/main/docs/assets/demo.gif)
+
 [**Documentation**](https://develmusa.github.io/mkdocs-network-graph-plugin/) • [**Quick Start**](#quick-start) • [**Configuration**](#configuration) • [**Contributing**](#contributing)
 
 </div>
@@ -21,7 +23,6 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Why Use a Graph?](#why-use-a-graph)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -37,27 +38,9 @@
 
 | **Interactive Visualization** | **Smart Navigation** | **Fully Customizable** | **Lightweight** |
 |:---:|:---:|:---:|:---:|
-| Beautiful, interactive graphs powered by D3.js | Full-site and local graph views | CSS variables for easy theming | Minimal dependencies, maximum performance |
+| **Interactive Graph Visualization** of your documentation structure | **Dual View Modes** to switch between a full-site overview and local page connections | **Theme Integration** that seamlessly blends with Material for MkDocs | **Performance Optimized** with minimal impact on build times and a responsive design |
 
 </div>
-
-### Key Capabilities
-
-- **Interactive Graph Visualization** - Creates stunning, interactive graphs of your documentation structure
-- **Dual View Modes** - Switch between full-site overview and local page connections
-- **Theme Integration** - Seamlessly integrates with Material for MkDocs themes
-- **Performance Optimized** - Lightweight with minimal impact on build times
-- **Highly Configurable** - Extensive customization options via CSS variables
-- **Responsive Design** - Works beautifully on desktop and mobile devices
-
-## Why Use a Graph?
-
-Traditional documentation follows a linear, hierarchical structure that can make it difficult to discover relationships between topics. A graph visualization transforms your docs into an interconnected knowledge network, offering:
-
-- **Enhanced Discoverability** - Visualize connections between related content you might otherwise miss
-- **Better Understanding** - See the "big picture" of your documentation architecture
-- **Intuitive Navigation** - Jump between related topics with visual, contextual navigation
-- **Content Insights** - Identify documentation gaps and over-connected areas
 
 ## Quick Start
 
@@ -114,13 +97,29 @@ pipx install mkdocs-network-graph-plugin
 
 ### Development Installation
 
-For contributors and developers:
+For contributors, this is the recommended setup:
 
-```bash
-git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
-cd mkdocs-network-graph-plugin
-uv pip install -e '.[dev]'
-```
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
+    cd mkdocs-network-graph-plugin
+    ```
+
+2. **Set up the development environment**
+
+    ```bash
+    # Sync with the lockfile
+    uv sync
+    # Install required Python versions for testing
+    uv python install 3.10 3.11 3.12 3.13
+    # Install in editable mode with dev dependencies
+    uv pip install -e '.[dev]'
+    # Install pre-commit hooks
+    uv run pre-commit install
+    ```
+
+For more details, see the [developer guide](https://develmusa.github.io/mkdocs-network-graph-plugin/how-to/for-developers/).
 
 ### Requirements
 
@@ -199,35 +198,17 @@ Comprehensive documentation is available at **[develmusa.github.io/mkdocs-networ
 
 ## Contributing
 
-We welcome contributions! Here's how to get started:
+We welcome contributions! For a complete guide on how to contribute, please see the [developer guide](https://develmusa.github.io/mkdocs-network-graph-plugin/how-to/for-developers/).
 
-### Development Setup
+To get started, set up your environment by following the [Development Installation](#development-installation) instructions. From there, you can run tests and linting using `nox`:
 
-1. **Clone the repository**
+```bash
+# Run tests
+uv run nox -s tests
 
-   ```bash
-   git clone https://github.com/develmusa/mkdocs-network-graph-plugin.git
-   cd mkdocs-network-graph-plugin
-   ```
-
-2. **Install development dependencies**
-
-   ```bash
-   uv pip install -e '.[dev]'
-   ```
-
-3. **Run tests**
-
-   ```bash
-   uv run pytest
-   ```
-
-4. **Check code style**
-
-   ```bash
-   uv run ruff check .
-   uv run ruff format .
-   ```
+# Run linting
+uv run nox -s lint
+```
 
 ### Contribution Guidelines
 
@@ -235,19 +216,6 @@ We welcome contributions! Here's how to get started:
 - **Feature Requests**: Open an issue with your proposal
 - **Pull Requests**: Fork, create a feature branch, and submit a PR
 - **Documentation**: Help improve our docs
-
-### Testing
-
-```bash
-# Run all tests
-uv run pytest
-
-# Run with coverage
-uv run pytest --cov=mkdocs_graph_plugin
-
-# Run specific test file
-uv run pytest tests/test_plugin.py
-```
 
 ## License
 
